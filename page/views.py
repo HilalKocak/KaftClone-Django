@@ -9,17 +9,30 @@ def index(request):
     images = Carousel.objects.all()
     context['images'] = images
     return render(request, 'home/index.html', context)
+def carousel_list(request):
+    context=dict()
+    context['carousel'] = Carousel.objects.all()
+    return render(request, 'manage/carousel_list.html', context)
+
+def carousel_update(request, pk):
+    context=dict()
+    context['item'] = Carousel.objects.get(pk=pk)
+    return render(request, 'manage/carousel_update.html', context)
+
 
 def carousel_create(request):
     context = dict()
     context['form'] = CarouselModelForm()
+    #item = Carousel.objects.first()
+    #context['form'] = CarouselModelForm(instance=item)
+
     if request.method =='POST':
         print(request.POST)
         print(request.FILES.get('cover_image'))
-
-        title = request.POST.get('title')
-        carousel = Carousel.objects.create(title = title)
-        carousel.save()
+        form = CarouselModelForm(request.POST, files=request.FILES)
+       
+        if form.is_valid():
+            form.save() # Bunu demeden veri tabanına kaydetmiyor :)
         messages.success(request, 'Birseyler eklendi ama neler oldu bilmiyorum')
 
     return render(request, 'manage/carousel_create.html', context)
