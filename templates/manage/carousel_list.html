@@ -19,7 +19,13 @@
                     <tr>
                         <th scope="row">{{ item.pk }}</th>
                         <td>{{ item.title }}</td>
-                        <td>{{ item.cover_image }}</td>
+                        <td>
+                            {% if item.cover_image %}
+                            <img src="{{ item.cover_image.url }}" class="w-100">
+                            {% else %}
+                            Görsel yok
+                            {% endif %}
+                        </td>
                         <td><a href="#" class="btn btn-primary">Edit</a></td>
                       </tr>
                     {% endfor %}
