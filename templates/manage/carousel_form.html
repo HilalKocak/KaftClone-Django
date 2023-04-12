@@ -4,24 +4,14 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col-sm-6 offset-sm-3">
-            <h1>Title</h1>
+            <a href="{% url 'carousel_list' %}" class="btn btn-secondary">Carousel List</a>
+            <hr>
             <form method="POST" enctype="multipart/form-data"> 
                 {% csrf_token %}
                 {{ form.as_p }}
                 <hr>
                 <input type="submit" class="btn btn-primary" value="Submit"/>
             </form>
-            {% comment %}
-            <form method="POST" enctype="multipart/form-data"> 
-                {% csrf_token %}
-
-    
-                <label for="">Email address</label>
-                <input type="text" name = "title" class="form-control"   placeholder="enter title"><br><br>
-                <input type="file" name = "cover_image"><br><br>
-                <input type="submit" class="btn btn-primary" value="Submit"/>
-            </form>
-            {% endcomment %}
         </div>
     </div>
 </div>

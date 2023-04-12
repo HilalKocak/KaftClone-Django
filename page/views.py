@@ -18,7 +18,7 @@ def carousel_update(request, pk):
     context=dict()
     item = Carousel.objects.get(pk=pk)
     context['form'] = CarouselModelForm(instance=item)
-    return render(request, 'manage/carousel_create.html', context)
+    return render(request, 'manage/carousel_form.html', context)
 
 
 def carousel_create(request):
@@ -36,4 +36,4 @@ def carousel_create(request):
             form.save() # Bunu demeden veri tabanına kaydetmiyor :)
         messages.success(request, 'Birseyler eklendi ama neler oldu bilmiyorum')
 
-    return render(request, 'manage/carousel_create.html', context)
+    return render(request, 'manage/carousel_form.html', context)
