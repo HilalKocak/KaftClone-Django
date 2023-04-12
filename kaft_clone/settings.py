@@ -40,7 +40,7 @@ INSTALLED_APPS = [
 
     # Third Party Apps:
 
-    
+
     # Django Extensions
     # django_extensions
     # My Apps:
@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'product',
 ]
 
-if os.environ.get('DJANGO_DEBUG')== True:
+if os.environ.get('DJANGO_DEBUG')== 'True':
     INSTALLED_APPS += [
         'django_extensions'
         ]

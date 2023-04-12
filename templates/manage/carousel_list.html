@@ -26,7 +26,7 @@
                             Görsel yok
                             {% endif %}
                         </td>
-                        <td><a href="#" class="btn btn-primary">Edit</a></td>
+                        <td><a href="{% url 'carousel_update' item.pk %}" class="btn btn-primary">Edit</a></td>
                       </tr>
                     {% endfor %}
                 </tbody>

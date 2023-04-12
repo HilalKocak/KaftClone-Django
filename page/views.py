@@ -16,8 +16,9 @@ def carousel_list(request):
 
 def carousel_update(request, pk):
     context=dict()
-    context['item'] = Carousel.objects.get(pk=pk)
-    return render(request, 'manage/carousel_update.html', context)
+    item = Carousel.objects.get(pk=pk)
+    context['form'] = CarouselModelForm(instance=item)
+    return render(request, 'manage/carousel_create.html', context)
 
 
 def carousel_create(request):
