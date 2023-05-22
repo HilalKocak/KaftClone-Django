@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from .models import Carousel
 from django.contrib import messages
 from .forms import CarouselModelForm
@@ -17,13 +17,28 @@ def carousel_list(request):
 def carousel_update(request, pk):
     context=dict()
     item = Carousel.objects.get(pk=pk)
-    context['form'] = CarouselModelForm(instance=item)
+    #item i bul, ve ekrana goster demek
+    context['form'] = carousel_form(request, instance=item)
+
+    if request.method == 'POST': # eger kullanici degisiklik yapip kaydederse
+        form = CarouselModelForm(request.POST, request.FILES, instance=item)
+        if form.is_valid():
+            form.save()
+            #return redirect('carousel_list')
+            messages.success(request, 'updated')
+            return redirect('carousel_update', pk)
     return render(request, 'manage/carousel_form.html', context)
 
+def carousel_form(request=None, instance=None):
+    if request:
+        form = CarouselModelForm(request.POST, request.FILES, instance=instance)
+    else:
+        form = CarouselModelForm(instance=instance)
+    return form
 
 def carousel_create(request):
     context = dict()
-    context['form'] = CarouselModelForm()
+    context['form'] = carousel_form()
     #item = Carousel.objects.first()
     #context['form'] = CarouselModelForm(instance=item)
 
