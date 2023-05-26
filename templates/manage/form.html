@@ -1,0 +1,24 @@
+{% extends 'base/base.html' %}
+{% block content %}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-sm-6 offset-sm-3">
+            <h2>{{ title }}</h2>
+            {% if title == "Carousel Create Form" %}
+            <a href="{% url 'carousel_list' %}" class="btn btn-secondary">Carousel List</a>
+            <hr>
+            {% else %}
+            <a href="{% url 'page_list' %}" class="btn btn-secondary">Page List</a>
+            <hr>
+            {% endif %}
+            <form method="POST" enctype="multipart/form-data"> 
+                {% csrf_token %}
+                {{ form.as_p }}
+                <hr>
+                <input type="submit" class="btn btn-primary" value="Submit"/>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}
