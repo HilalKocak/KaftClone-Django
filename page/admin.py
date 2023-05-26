@@ -2,7 +2,7 @@ from django.contrib import admin
 from .models import Page, Carousel
 
 
-class PageModify(admin.ModelAdmin):
+class PageAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("title",)}
     list_display = (
         'pk',
@@ -18,10 +18,10 @@ class PageModify(admin.ModelAdmin):
     )
 
 
-admin.site.register(Page, PageModify)
+admin.site.register(Page, PageAdmin)
 
 
-class CarouselModify(admin.ModelAdmin):
+class CarouselAdmin(admin.ModelAdmin):
     list_display = (
         'pk',
         'title',
@@ -31,4 +31,4 @@ class CarouselModify(admin.ModelAdmin):
     )
  
 
-admin.site.register(Carousel, CarouselModify)
+admin.site.register(Carousel, CarouselAdmin)
