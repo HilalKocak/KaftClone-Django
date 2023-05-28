@@ -52,6 +52,7 @@ class Product(models.Model):
         null=True,
         blank=True,
     )
+    is_home = models.BooleanField(default=False)
     price = models.FloatField(max_length=5)
     stock = models.PositiveSmallIntegerField(default=0)
     status = models.CharField(

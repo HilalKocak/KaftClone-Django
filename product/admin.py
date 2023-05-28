@@ -28,15 +28,18 @@ class ProductAdmin(admin.ModelAdmin):
         'pk',
         'title',
         'slug',
+        'is_home',
+        'cover_image',
         'price',
         'stock',
         'status', 
         'updated_at',
     )
     list_filter = ('status',)
-    list_editable = (
+    list_editable = ( # Hic iceri girmeden editleyebilecegimiz fieldlar
         'title',
         'status', 
+        'is_home',
     )
 
 admin.site.register(Category, CategoryAdmin)

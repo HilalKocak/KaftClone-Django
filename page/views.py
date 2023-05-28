@@ -1,10 +1,10 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from .models import Carousel, Page
 from django.contrib import messages
 from .forms import CarouselModelForm, PageModelForm
 from slugify import slugify
 from django.contrib.admin.views.decorators import staff_member_required
-from product.models import Category
+from product.models import Category, Product
 
 STATUS = 'published'
 
@@ -13,7 +13,14 @@ def index(request):
     context = dict()
     context['images'] = Carousel.objects.filter(status=STATUS).exclude(cover_image='')
     # context['categories'] = Category.objects.filter(status = STATUS).order_by('title') - contex processors
+    context['products'] = Product.objects.filter(is_home = True, status = STATUS)
     return render(request, 'home/index.html', context)
+
+def page_show(request, slug):
+    context = dict()
+    context['page'] = get_object_or_404(Page, slug = slug)
+    return render(request, 'page/page.html', context)
+
 
 def manage_list(request):
     context = dict()
