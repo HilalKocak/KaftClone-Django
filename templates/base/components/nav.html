@@ -16,9 +16,9 @@
                     Erkek
                 </a>
                 <div class="dropdown-menu " x-placement="bottom-start" >
-                  {% for item in category %}
+                  {% for item in categories %}
                     {% if item.gender == 'man' or item.gender == 'unisex' %}
-                    <a class="dropdown-item" href="#">
+                    <a class="dropdown-item" href="{% url 'show_category' category_slug=item.slug %}">
                       {{ item.title }}
                     </a>
                     {%  endif %}
@@ -31,10 +31,10 @@
                     Kadın
                 </a>
                 <div class="dropdown-menu " x-placement="bottom-start" >
-                  {% for item in category %}
+                  {% for item in categories %}
                     {% if item.gender == 'woman' or item.gender == 'unisex' %}
-                      <a class="dropdown-item" href="#">
-                        {{ item.title }}
+                      <a class="dropdown-item" href="{% url 'show_category' category_slug=item.slug %}">
+                      {{ item.title }}
                       </a>
                     {% endif %}
                   {% endfor %} 
@@ -45,9 +45,9 @@
                     Her Zaman
                 </a>
                 <div class="dropdown-menu " x-placement="bottom-start" >
-                  {% for item in category %}
+                  {% for item in categories %}
                   {% if item.gender == 'unisex' %}
-                    <a class="dropdown-item" href="#">
+                    <a class="dropdown-item" href="{% url 'show_category' category_slug=item.slug %}">
                       {{ item.title }}
                     </a>
                   {% endif %}

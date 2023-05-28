@@ -12,7 +12,7 @@ STATUS = 'published'
 def index(request):
     context = dict()
     context['images'] = Carousel.objects.filter(status=STATUS).exclude(cover_image='')
-    context['category'] = Category.objects.filter(status = STATUS)
+    context['categories'] = Category.objects.filter(status = STATUS).order_by('title')
     return render(request, 'home/index.html', context)
 
 def manage_list(request):
