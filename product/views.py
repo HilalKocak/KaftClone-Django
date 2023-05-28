@@ -7,7 +7,7 @@ from django.shortcuts import get_object_or_404
 def show_category(request, category_slug):
     context = dict()
     context['category'] = get_object_or_404(Category, slug=category_slug)
-    context['categories'] = Category.objects.filter(status = 'published').order_by('title')
+    # context['categories'] = Category.objects.filter(status = 'published').order_by('title')
 
     context['items'] = Product.objects.filter(category=context['category'],
                                               status = 'published',
