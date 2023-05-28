@@ -4,10 +4,15 @@ from django.contrib import messages
 from .forms import CarouselModelForm, PageModelForm
 from slugify import slugify
 from django.contrib.admin.views.decorators import staff_member_required
+from product.models import Category
+
+STATUS = 'published'
+
 
 def index(request):
     context = dict()
-    context['images'] = Carousel.objects.filter(status="published").exclude(cover_image='')
+    context['images'] = Carousel.objects.filter(status=STATUS).exclude(cover_image='')
+    context['category'] = Category.objects.filter(status = STATUS)
     return render(request, 'home/index.html', context)
 
 def manage_list(request):

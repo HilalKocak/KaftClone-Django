@@ -16,8 +16,13 @@
                     Erkek
                 </a>
                 <div class="dropdown-menu " x-placement="bottom-start" >
-                    <a class="dropdown-item" href="#">T-Shirt</a>
-                    <a class="dropdown-item" href="#">Çanta</a>
+                  {% for item in category %}
+                    {% if item.gender == 'man' or item.gender == 'unisex' %}
+                    <a class="dropdown-item" href="#">
+                      {{ item.title }}
+                    </a>
+                    {%  endif %}
+                  {% endfor %} 
                     
                 </div>
             </li>
@@ -26,9 +31,13 @@
                     Kadın
                 </a>
                 <div class="dropdown-menu " x-placement="bottom-start" >
-                    <a class="dropdown-item" href="#">T-Shirt</a>
-                    <a class="dropdown-item" href="#">Çanta</a>
-                    
+                  {% for item in category %}
+                    {% if item.gender == 'woman' or item.gender == 'unisex' %}
+                      <a class="dropdown-item" href="#">
+                        {{ item.title }}
+                      </a>
+                    {% endif %}
+                  {% endfor %} 
                 </div>
             </li>
             <li class="nav-item dropdown">
@@ -36,9 +45,13 @@
                     Her Zaman
                 </a>
                 <div class="dropdown-menu " x-placement="bottom-start" >
-                    <a class="dropdown-item" href="#">T-Shirt</a>
-                    <a class="dropdown-item" href="#">Çanta</a>
-                    
+                  {% for item in category %}
+                  {% if item.gender == 'unisex' %}
+                    <a class="dropdown-item" href="#">
+                      {{ item.title }}
+                    </a>
+                  {% endif %}
+                {% endfor %} 
                 </div>
             </li>
           </ul>
