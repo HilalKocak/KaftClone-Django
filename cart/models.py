@@ -59,9 +59,10 @@ def shopping_card_item_receiver(sender, instance,created, *args, **kwargs):
     print(f"{'x' * 30}\nShopping Card Item\n{'x'*30}")
     print(kwargs)
  
-
 @receiver(m2m_changed, sender = ShoppingCard.items.through)
 def shopping_card_receiver(sender, model, *args, **kwargs):
+    
     instance = kwargs['instance']
+    instance.total_price_update()
     print(f"{'x' * 30}\nShopping Card\n{'x'*30}")
     print(kwargs)
