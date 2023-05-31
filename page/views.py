@@ -14,9 +14,7 @@ def index(request):
     context['images'] = Carousel.objects.filter(status=STATUS).exclude(cover_image='')
     # context['categories'] = Category.objects.filter(status = STATUS).order_by('title') - contex processors
     context['products'] = Product.objects.filter(is_home = True, status = STATUS)
-    if not request.session.session_key:
-        request.session.save()
-    print(f"SESSION KEY {request.session.session_key}")
+    
     return render(request, 'home/index.html', context)
 
 def page_show(request, slug):

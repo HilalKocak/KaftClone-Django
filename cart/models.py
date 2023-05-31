@@ -27,6 +27,7 @@ class ShoppingCardItem(models.Model):
 
 class ShoppingCard(models.Model):
     user = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
+    session_key = models.CharField(max_length=32, blank=True, null=True)
     createt_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     items = models.ManyToManyField(ShoppingCardItem, blank=True)
