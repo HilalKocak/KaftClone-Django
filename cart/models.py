@@ -56,7 +56,7 @@ def shopping_card_item_receiver(sender, instance, created, *args, **kwargs):
     if created:
         instance.price = instance.product.price
         instance.save()
-    instance.shoppingcard_set.last().total_price_update()
+    instance.shoppingcard_set.first().total_price_update()
     print(kwargs)
     print(f"{'x' * 30}\nShoppingCardItem\n{'x' * 30}")
     print(instance.shoppingcard_set.last().total_price)
