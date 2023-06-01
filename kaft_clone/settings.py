@@ -135,6 +135,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Trello: TO_DO Plugin Test
 
-# python manage.py startapp cart
+# python manage.py startapp card
 # python manage.py startapp page
 # python manage.py startapp product

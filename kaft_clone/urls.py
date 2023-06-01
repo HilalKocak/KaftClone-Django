@@ -11,5 +11,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('manage/carousel_create',carousel_create, name='carousel_create' ),
     path("manage/", include("page.urls",)),
+    path("cart/", include("cart.urls",)),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

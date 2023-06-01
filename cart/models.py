@@ -51,18 +51,20 @@ class ShoppingCard(models.Model):
         print(total_price)
         self.save()
 
-@receiver(post_save, sender = ShoppingCardItem)
-def shopping_card_item_receiver(sender, instance,created, *args, **kwargs):
+@receiver(post_save, sender=ShoppingCardItem)
+def shopping_card_item_receiver(sender, instance, created, *args, **kwargs):
     if created:
         instance.price = instance.product.price
         instance.save()
-    instance.shoppingcard_set.first().total_price_update()
-    print(f"{'x' * 30}\nShopping Card Item\n{'x'*30}")
+    instance.shoppingcard_set.last().total_price_update()
     print(kwargs)
- 
-@receiver(m2m_changed, sender = ShoppingCard.items.through)
-def shopping_card_receiver(sender, model, *args, **kwargs):
-    instance = kwargs['instance']
+    print(f"{'x' * 30}\nShoppingCardItem\n{'x' * 30}")
+    print(instance.shoppingcard_set.last().total_price)
+
+
+@receiver(m2m_changed, sender=ShoppingCard.items.through)
+def shopping_card_receiver(sender, instance, *args, **kwargs):
     instance.total_price_update()
-    print(f"{'x' * 30}\nShopping Card\n{'x'*30}")
+    print(args)
     print(kwargs)
+    print(f"{'x' * 30}\nShoppingCard\n{'x' * 30}")
